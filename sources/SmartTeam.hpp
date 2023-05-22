@@ -1,21 +1,14 @@
 #pragma once
-#include <vector>
-#include "Character.hpp"
+#include "Team.hpp"
 using namespace std;
 
 namespace ariel
 {
-    class SmartTeam
+    class SmartTeam : public Team
     {
-    private:
-        vector<Character *> warriors;
-        Character *leader;
-
     public:
         SmartTeam(Character *);
-        void add(Character *);
-        void attack(SmartTeam *);
-        int stillAlive();
-        string print();
+        void attack(Team *);
+        void print() override;
     };
 };

@@ -1,5 +1,7 @@
 #pragma once
+#include <cmath>
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 namespace ariel
@@ -13,12 +15,12 @@ namespace ariel
     public:
         Point();
         Point(double, double);
-        double getX();
-        void setX(double);
         double getY();
-        void setY(double);
-        double distance(Point);
+        double getX();
         string print();
+        void setY(double);
+        void setX(double);
+        double distance(Point);
         static Point moveTowards(Point, Point, double);
     };
 }

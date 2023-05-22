@@ -1,42 +1,57 @@
 #include "Character.hpp"
 using namespace std;
+
 namespace ariel
 {
     Character::Character(string name, Point location, int health)
-        : name(name), location(location), health(health) {}
+        : name(std::move(name)), location(location), health(health) {}
 
     Point Character::getLocation()
     {
-        return Point(1.1, 2.2);
+        return this->location;
+    }
+
+    void Character::setLocation(Point dest)
+    {
+        this->location = dest;
     }
 
     int Character::getHealth()
     {
-        return 1;
+        return this->health;
     }
 
     string Character::getName()
     {
-        return "stav";
+        return this->name;
     }
 
     bool Character::isAlive()
     {
-        return true;
+        return this->health > 0;
     }
 
-    double Character::distance(Character *a)
+    double Character::distance(Character *other)
     {
-        return 1.1;
+        return this->location.distance(other->location);
     }
 
-    void Character::hit(int a)
+    void Character::hit(int life)
     {
-        return;
+        if (life < 0)
+            throw invalid_argument("only positive integer");
+        this->health -= life;
+        if (this->health < 0)
+            this->health = 0;
     }
 
-    string Character::print()
+    bool Character::getIN()
     {
-        return "";
+        return this->IN;
+    }
+
+    void Character::setIN()
+    {
+        this->IN = true;
     }
 }

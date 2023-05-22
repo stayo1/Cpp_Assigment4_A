@@ -1,28 +1,18 @@
 #include "Team2.hpp"
-using namespace std;
 
 namespace ariel
 {
-    Team2::Team2(Character *leader)
-        : leader(leader) { warriors.push_back(leader); }
-
-    void Team2::add(Character *a)
+    Team2::Team2(Character *leader) : Team(leader){};
+    void Team2::add(Character *warrior)
     {
-        return;
+        if (!warrior->isAlive())
+            throw runtime_error("the warrior is dead");
+        if (warrior->getIN() == true)
+            throw runtime_error("the warrior is in the team");
+        if (MAX_SIZE == this->getSize())
+            throw runtime_error("the team is full");
+        this->setWarriors(warrior);
+        this->setSize(1);
+        warrior->setIN();
     }
-
-    void Team2::attack(Team2 *b)
-    {
-        return;
-    }
-
-    int Team2::stillAlive()
-    {
-        return 1;
-    }
-
-    string Team2::print()
-    {
-        return "";
-    }
-}
+};

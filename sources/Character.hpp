@@ -9,17 +9,28 @@ namespace ariel
     {
     private:
         Point location;
-        int health;
         string name;
+        int health;
+        bool IN = false;
 
     public:
         Character(string, Point, int);
-        Point getLocation();
+        virtual ~Character() = default;
+        Character(Character &&) = default;
+        Character(const Character &) = default;
+        Character &operator=(Character &&) = default;
+        Character &operator=(const Character &) = default;
+        bool getIN();
+        void setIN();
+        void hit(int);
+        bool isAlive();
         int getHealth();
         string getName();
-        bool isAlive();
+        Point getLocation();
+        void setLocation(Point);
+        virtual string print() = 0;
+        virtual string getID() = 0;
         double distance(Character *);
-        void hit(int);
-        string print();
+        virtual void kill(Character *) = 0;
     };
 }

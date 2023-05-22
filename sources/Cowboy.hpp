@@ -11,8 +11,16 @@ namespace ariel
 
     public:
         Cowboy(string, Point);
-        void shoot(Character *);
-        bool hasboolets();
+        Cowboy(Cowboy &&) = default;
+        ~Cowboy() override = default;
+        Cowboy(const Cowboy &) = default;
+        Cowboy &operator=(Cowboy &&) = default;
+        Cowboy &operator=(const Cowboy &) = default;
         void reload();
+        bool hasboolets();
+        void shoot(Character *);
+        string print() override;
+        string getID() override;
+        void kill(Character *enemy) override;
     };
 }

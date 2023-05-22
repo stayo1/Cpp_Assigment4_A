@@ -7,36 +7,49 @@ namespace ariel
 
     double Point::getX()
     {
-        return this->x;
+        return x;
     }
 
     void Point::setX(double a)
     {
-        this->x = a;
+        x = a;
     }
 
     double Point::getY()
     {
-        return this->y;
+        return y;
     }
 
     void Point::setY(double b)
     {
-        this->y = b;
+        y = b;
     }
 
     double Point::distance(Point c)
     {
-        return 1.1;
+        double result_X = x - c.getX();
+        double result_Y = y - c.getY();
+        double distance = std::sqrt(result_X * result_X + result_Y * result_Y);
+        return distance;
     }
 
     string Point::print()
     {
+        cout << "the coordinates is : (" << to_string(x) << "," << to_string(y) << ")" << endl;
         return "";
     }
 
-    Point Point::moveTowards(Point a, Point b, double c)
+    Point Point::moveTowards(Point source, Point destination, double MaxDistance)
     {
-        return Point(1.1, 2.2);
+        if (source.distance(destination) <= MaxDistance)
+            return destination;
+        if (MaxDistance == 0)
+            return source;
+        if (MaxDistance < 0)
+            throw invalid_argument("the distance should be only positive");
+        double deltaX = destination.x - source.x;
+        double deltaY = destination.y - source.y;
+        double scale = MaxDistance / source.distance(destination);
+        return Point(source.x + scale * deltaX, source.y + scale * deltaY);
     }
 }
